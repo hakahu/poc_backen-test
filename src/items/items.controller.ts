@@ -17,7 +17,7 @@ export class ItemsController {
         return this.itemService.getAllItems();
     }
 
-        // @Get(':id')
+    // @Get(':id')
     // async getItem(@Param('_id') id: string): Promise<ItemsData> {
     //     return this.itemsDataService.getItem(id);
     // }
