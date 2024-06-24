@@ -21,6 +21,7 @@ export class LoginController {
 
     @Post()
     async sendUserLoginData(@Body() itemData: UserLoginData): Promise<boolean> {
+        console.log(itemData);
         return this.userDataService.sendUserLoginData(itemData);
     }
 }
