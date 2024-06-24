@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { UserSchema } from './user.entity';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { UserLoginSchema } from './user.entity';
 import { LoginService } from './user-login.service';
 import { UserLoginData } from './user-login.interface';
 
@@ -10,8 +10,13 @@ export class LoginController {
     }
 
     @Get()
-    async getAllUserData(): Promise<typeof UserSchema[]> {
+    async getAllUserData(): Promise<typeof UserLoginSchema[]> {
         return this.userDataService.getAllUserData();
+    }
+    
+    @Get('single')
+    async getUserById(@Query('id') id: string): Promise<typeof UserLoginSchema> {
+        return this.userDataService.getUserById(id);
     }
 
     @Post()

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserSchema } from './user.entity';
+import { UserLoginSchema } from './user.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserLoginData } from './user-login.interface';
@@ -9,11 +9,15 @@ export class LoginService {
 
     constructor(
         @InjectModel('User')
-        private readonly userModel: Model<typeof UserSchema>,
+        private readonly userModel: Model<typeof UserLoginSchema>,
     ) {}
 
-    async getAllUserData(): Promise<typeof UserSchema[]> {
+    async getAllUserData(): Promise<typeof UserLoginSchema[]> {
         return this.userModel.find().exec();
+    }
+
+    async getUserById(id: string): Promise<typeof UserLoginSchema> {
+        return this.userModel.findById(id).exec();
     }
 
     async sendUserLoginData(itemData: UserLoginData): Promise<boolean> {
