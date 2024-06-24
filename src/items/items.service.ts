@@ -10,12 +10,12 @@ export class ItemsService {
         private readonly itemsModel: Model<typeof ItemSchema>,
     ) {}
 
-    async createItemSchema(itemData: typeof ItemSchema): Promise<typeof ItemSchema> {
+    async createItem(itemData: typeof ItemSchema): Promise<typeof ItemSchema> {
         const newItem = new this.itemsModel(itemData);
         return newItem.save();
     }
 
-    async getItem(id: string): Promise<typeof ItemSchema | null> {
+    async getItemById(id: string): Promise<typeof ItemSchema | null> {
         return this.itemsModel.findById(id).exec();
     }
 

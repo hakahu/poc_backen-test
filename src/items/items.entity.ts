@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 
 export enum DishType {
   PIZZA = "Pizza",
-  PASTA = "Appetizer",
+  PASTA = "Pasta",
   DESSERT = "Dessert",
   SIDE_DISH = "Side Dish",
   SALAD = "Salad",
