@@ -1,5 +1,5 @@
-export interface UserLoginData {
-    email: string;
-    userName: string;
-    password: string;
+export class UserLoginData {
+  email?: string;
+  userName?: string;
+  password: string;
 }

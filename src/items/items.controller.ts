@@ -14,6 +14,7 @@ export class ItemsController {
 
     @Get()
     async getAllItems(): Promise<typeof ItemSchema[]> {
+        console.log("Request to get all Items.");
         return this.itemService.getAllItems();
     }
 
