@@ -7,9 +7,11 @@ import { ItemsModule } from './items/items.module';
 import { SignupModule } from './user-signup/user-signup.module';
 import { PaymentModule } from './payment/payment.module';
 import { UserManagementModule } from './user-management/user-management.module';
+import { CartModule } from './cart/cart.module';
+import { InvoiceModule } from './invoice/invoice.module';
 
 @Module({
-  imports: [LoginModule, SignupModule, MongooseModule.forRoot('mongodb+srv://backend-test:Test123@backend-test.dayvnzs.mongodb.net/'), ItemsModule, PaymentModule, UserManagementModule],
+  imports: [LoginModule, SignupModule, MongooseModule.forRoot('mongodb+srv://backend-test:Test123@backend-test.dayvnzs.mongodb.net/'), ItemsModule, PaymentModule, UserManagementModule, CartModule, InvoiceModule],
   controllers: [AppController],
   providers: [AppService],
 })
