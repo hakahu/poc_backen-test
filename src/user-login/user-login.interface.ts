@@ -3,6 +3,8 @@ export interface UserData {
   userName?: string;
   password: string;
   postcode: string;
+  firstName: string;
+  lastName: string;
   street: string;
   streetnumber: string;
   country: string;

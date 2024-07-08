@@ -4,7 +4,7 @@ export interface Invoice extends Document {
   invoiceId: string;
   userId: string;
   cartId: string;
-  items: Item[]; // Array von Item-Interfaces
+  items: Item[];
   totalAmount: number;
   createdAt: Date;
   updatedAt: Date;

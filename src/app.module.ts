@@ -11,6 +11,7 @@ import { InvoiceModule } from './invoice/invoice.module';
 import { CartModule } from './cart/cart.module';
 import { CartService } from './cart/cart.service';
 import { InvoiceService } from './invoice/invoice.service';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { InvoiceService } from './invoice/invoice.service';
     InvoiceModule,
     LoginModule,
     SignupModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

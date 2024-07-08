@@ -35,4 +35,8 @@ export class UserManagementService {
       .findByIdAndUpdate(id, updateData, { new: true })
       .exec();
   }
+
+  async getUserByEmail(email: string): Promise<UserData> {
+    return this.userModel.findOne({ email }).exec();
+  }
 }

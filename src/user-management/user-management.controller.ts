@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Patch, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Query } from '@nestjs/common';
 import { UserData } from 'src/user-login/user-login.interface';
 import { UserManagementService } from './user-management.service';
 
@@ -18,7 +18,7 @@ export class UserManagementController {
     return this.userManagementService.getUserById(id);
   }
 
-  @Delete(':id')
+  @Delete()
   async deleteUser(@Query('id') id: string): Promise<UserData> {
     console.log('Try to delete user by id: ', id, ' ...');
     return this.userManagementService.deleteUser(id);
@@ -31,5 +31,11 @@ export class UserManagementController {
   ): Promise<UserData> {
     console.log('Try to update user data by id:', id, 'with data:', updateData);
     return this.userManagementService.updateUser(id, updateData);
+  }
+
+  @Post('email')
+  async getUserByEmail(@Query('email') email: string): Promise<UserData> {
+    console.log('Try to find user by email:', email, ' ...');
+    return this.userManagementService.getUserByEmail(email);
   }
 }

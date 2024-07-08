@@ -1,14 +1,15 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserManagementService } from './user-management.service';
-import { UserManagementController } from './user-management.controller'; // Importiere den Controller
+import { UserManagementController } from './user-management.controller';
 import { UserSchema } from 'src/user-login/user.entity';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]), // Registriere das Mongoose-Modell
+    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
   ],
   providers: [UserManagementService],
-  controllers: [UserManagementController], // Registriere den Controller
+  controllers: [UserManagementController],
+  exports: [UserManagementService]
 })
 export class UserManagementModule {}
