@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserLoginSchema } from 'src/user-login/user.entity';
+import { UserSchema } from 'src/user-login/user.entity';
 import * as bcrypt from 'bcrypt';
-import { UserLoginData } from 'src/user-login/user-login.interface';
+import { UserData } from 'src/user-login/user-login.interface';
 
 @Injectable()
 export class SignupService {
   constructor(
     @InjectModel('User')
-    private readonly userModel: Model<typeof UserLoginSchema>,
+    private readonly userModel: Model<UserData>,
   ) {}
 
-  async createUserData(userData: UserLoginData): Promise<UserLoginSchema> {
+  async createUserData(userData: UserData): Promise<UserData> {
     const saltOrRounds = 10;
     const hashedPassword = await bcrypt.hash(userData.password, saltOrRounds);
 
@@ -21,6 +21,6 @@ export class SignupService {
       password: hashedPassword,
     });
 
-    return newUser.save() as unknown as Promise<UserLoginSchema>;
+    return newUser.save() as unknown as Promise<UserData>;
   }
 }

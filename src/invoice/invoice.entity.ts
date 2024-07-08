@@ -16,7 +16,6 @@ export const InvoiceSchema: Schema = new mongoose.Schema({
     enum: ['pending', 'paid', 'cancelled'],
     default: 'pending',
   },
-
 });
 
 export default mongoose.model<Invoice>('Invoice', InvoiceSchema);

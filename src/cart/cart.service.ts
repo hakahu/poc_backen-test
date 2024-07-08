@@ -19,4 +19,14 @@ export class CartService {
   async getCartById(id: string): Promise<Cart> {
     return this.cartModel.findById(id).exec();
   }
+
+  async deleteCart(id: string): Promise<Cart> {
+    return this.cartModel.findByIdAndDelete(id).exec();
+  }
+
+  async updateCart(id: string, updateData: Partial<Cart>): Promise<Cart> {
+    return this.cartModel
+      .findByIdAndUpdate(id, updateData, { new: true })
+      .exec();
+  }
 }

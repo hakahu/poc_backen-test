@@ -2,36 +2,28 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { UserLoginData } from './user-login.interface';
-import { UserLoginSchema } from './user.entity';
+import { UserData } from './user-login.interface';
+import { UserSchema } from './user.entity';
 
 @Injectable()
 export class LoginService {
   constructor(
     @InjectModel('User')
-    private readonly userModel: Model<typeof UserLoginSchema>,
+    private readonly userModel: Model<UserData>,
   ) {}
 
-  async getAllUserData(): Promise<(typeof UserLoginSchema)[]> {
-    return this.userModel.find().exec();
-  }
-
-  async getUserById(id: string): Promise<typeof UserLoginSchema> {
-    return this.userModel.findById(id).exec();
-  }
-
-  async sendUserLoginData(itemData: UserLoginData): Promise<boolean> {
+  async sendUserLoginData(userData: UserData): Promise<boolean> {
     const user = (await this.userModel
       .findOne({
-        $or: [{ email: itemData.email }, { userName: itemData.userName }],
+        $or: [{ email: userData.email }, { userName: userData.userName }],
       })
-      .exec()) as unknown as UserLoginSchema;
+      .exec()) as unknown as UserData;
 
     console.log(user);
 
     if (user) {
       const isPasswordMatching = await bcrypt.compare(
-        itemData.password,
+        userData.password,
         user.password,
       );
       return isPasswordMatching;

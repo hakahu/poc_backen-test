@@ -9,8 +9,8 @@ export class InvoiceService {
     @InjectModel('Invoice') private readonly invoiceModel: Model<Invoice>,
   ) {}
 
-  async createInvoice(Invoice: Invoice): Promise<Invoice> {
-    const newInvoice = new this.invoiceModel(Invoice);
+  async createInvoice(invoice: Invoice): Promise<Invoice> {
+    const newInvoice = new this.invoiceModel(invoice);
     return newInvoice.save();
   }
 
@@ -20,5 +20,18 @@ export class InvoiceService {
 
   async getInvoiceById(id: string): Promise<Invoice> {
     return this.invoiceModel.findById(id).exec();
+  }
+
+  async deleteInvoice(id: string): Promise<Invoice> {
+    return this.invoiceModel.findByIdAndDelete(id).exec();
+  }
+
+  async updateInvoice(
+    id: string,
+    updateData: Partial<Invoice>,
+  ): Promise<Invoice> {
+    return this.invoiceModel
+      .findByIdAndUpdate(id, updateData, { new: true })
+      .exec();
   }
 }
