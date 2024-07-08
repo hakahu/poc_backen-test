@@ -4,22 +4,23 @@ import { ItemSchema } from './items.entity';
 
 @Controller('items')
 export class ItemsController {
+  constructor(private itemService: ItemsService) {}
 
-    constructor(private itemService: ItemsService) {}
+  @Post()
+  async createItem(
+    @Body() itemData: typeof ItemSchema,
+  ): Promise<typeof ItemSchema> {
+    return this.itemService.createItem(itemData);
+  }
 
-    @Post()
-    async createItem(@Body() itemData: typeof ItemSchema): Promise<typeof ItemSchema> {
-        return this.itemService.createItem(itemData);
-    }
+  @Get()
+  async getAllItems(): Promise<(typeof ItemSchema)[]> {
+    console.log('Request to get all Items.');
+    return this.itemService.getAllItems();
+  }
 
-    @Get()
-    async getAllItems(): Promise<typeof ItemSchema[]> {
-        console.log("Request to get all Items.");
-        return this.itemService.getAllItems();
-    }
-
-    @Get('single')
-    async getItem(@Query('id') id: string): Promise<typeof ItemSchema> {
-        return this.itemService.getItemById(id);
-    }
+  @Get('single')
+  async getItem(@Query('id') id: string): Promise<typeof ItemSchema> {
+    return this.itemService.getItemById(id);
+  }
 }

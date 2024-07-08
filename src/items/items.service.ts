@@ -5,21 +5,21 @@ import { ItemSchema } from './items.entity';
 
 @Injectable()
 export class ItemsService {
-    constructor(
-        @InjectModel('Item')
-        private readonly itemsModel: Model<typeof ItemSchema>,
-    ) {}
+  constructor(
+    @InjectModel('Item')
+    private readonly itemsModel: Model<typeof ItemSchema>,
+  ) {}
 
-    async createItem(itemData: typeof ItemSchema): Promise<typeof ItemSchema> {
-        const newItem = new this.itemsModel(itemData);
-        return newItem.save();
-    }
+  async createItem(itemData: typeof ItemSchema): Promise<typeof ItemSchema> {
+    const newItem = new this.itemsModel(itemData);
+    return newItem.save();
+  }
 
-    async getItemById(id: string): Promise<typeof ItemSchema | null> {
-        return this.itemsModel.findById(id).exec();
-    }
+  async getItemById(id: string): Promise<typeof ItemSchema | null> {
+    return this.itemsModel.findById(id).exec();
+  }
 
-    async getAllItems(): Promise<typeof ItemSchema[]> {
-        return this.itemsModel.find().exec();
-    }
+  async getAllItems(): Promise<(typeof ItemSchema)[]> {
+    return this.itemsModel.find().exec();
+  }
 }

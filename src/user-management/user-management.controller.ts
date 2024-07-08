@@ -3,7 +3,5 @@ import { UserManagementService } from './user-management.service';
 
 @Controller('user-management')
 export class UserManagementController {
-    
-    constructor(private userManagementService: UserManagementService) {
-    }
+  constructor(private userManagementService: UserManagementService) {}
 }

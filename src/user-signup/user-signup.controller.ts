@@ -5,13 +5,14 @@ import { UserLoginData } from 'src/user-login/user-login.interface';
 
 @Controller('signup')
 export class SignupController {
+  constructor(private userDataService: SignupService) {}
 
-    constructor(private userDataService: SignupService) {}
-
-    @Post()
-    async createUserData(@Body() userData: UserLoginData): Promise<UserLoginData> {
-        console.log("Success");
-        debugger;
-        return this.userDataService.createUserData(userData);
-    }
+  @Post()
+  async createUserData(
+    @Body() userData: UserLoginData,
+  ): Promise<UserLoginData> {
+    console.log('Success');
+    debugger;
+    return this.userDataService.createUserData(userData);
+  }
 }
