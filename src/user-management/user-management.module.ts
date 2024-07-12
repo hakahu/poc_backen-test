@@ -5,11 +5,9 @@ import { UserManagementController } from './user-management.controller';
 import { UserSchema } from 'src/user-login/user.entity';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
   providers: [UserManagementService],
   controllers: [UserManagementController],
-  exports: [UserManagementService]
+  exports: [UserManagementService],
 })
 export class UserManagementModule {}

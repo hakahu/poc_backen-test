@@ -12,12 +12,19 @@ export class EmailController {
 
   @Post('password')
   async forgotPassword(@Query('email') email: string): Promise<string> {
-    console.log("Try to send email for forgotten password of email address: ", email);
+    console.log(
+      'Try to send email for forgotten password of email address: ',
+      email,
+    );
     const user = await this.userManagementService.getUserByEmail(email);
     if (user) {
       const token = 'generate-token-here';
       const emailContent = getPasswordResetTemplate(user.firstName, token);
-      await this.emailService.sendEmail(user.email, 'Password Reset', emailContent);
+      await this.emailService.sendEmail(
+        user.email,
+        'Password Reset',
+        emailContent,
+      );
       return 'Email sent successfully';
     }
     throw new Error('User not found');
